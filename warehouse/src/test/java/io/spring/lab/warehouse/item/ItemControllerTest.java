@@ -10,6 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import io.spring.lab.warehouse.error.DefaultErrorController;
+
 import static io.spring.lab.warehouse.PersistenceConfiguration.testItemsData;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
@@ -24,7 +26,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ItemController.class)
+@WebMvcTest(controllers = {
+        DefaultErrorController.class,
+        ItemController.class
+})
 public class ItemControllerTest {
 
     @MockBean
@@ -91,5 +96,12 @@ public class ItemControllerTest {
                 .content("{\"countDiff\": -10}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("Item test has only 5 out of -10 requested"));
+    }
+
+    @Test
+    public void shouldReturn500WhenInternalError() throws Exception {
+        mvc.perform(get("/error"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.message").value("Unexpected error"));
     }
 }
