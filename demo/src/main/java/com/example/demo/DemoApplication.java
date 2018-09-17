@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.Value;
 
 @SpringBootApplication
-public class DemoApplication {
+public class DemoApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+//		SpringApplication.run(DemoApplication.class, args);
+		new DemoApplication()
+				.configure(new SpringApplicationBuilder())
+				.build().run(args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(DemoApplication.class);
 	}
 }
 
@@ -21,7 +31,7 @@ class GreetingController {
 
 	@GetMapping("/greet/{name}")
 	Greeting greet(@PathVariable("name") String name) {
-		return new Greeting(String.format("Hello %s!", name));
+		return new Greeting(String.format("Hello again %s!", name));
 	}
 }
 
@@ -29,5 +39,4 @@ class GreetingController {
 class Greeting {
 
 	private String message;
-
 }
