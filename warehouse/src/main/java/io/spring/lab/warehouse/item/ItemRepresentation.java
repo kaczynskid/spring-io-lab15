@@ -25,4 +25,7 @@ public class ItemRepresentation {
 		return new ItemRepresentation(item.getId(), item.getName(), item.getCount(), item.getPrice(), null);
 	}
 
+	Item asItem() {
+		return new Item(id, name, count, price);
+	}
 }
