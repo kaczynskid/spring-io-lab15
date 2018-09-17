@@ -1,5 +1,5 @@
 @RestController
-class Grreeter {
+class Greeter {
   
   @GetMapping('/greet')
   def sayHello() {
