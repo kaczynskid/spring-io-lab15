@@ -14,7 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
+		"greeting.template=Hello test %s!"
+})
 public class DemoApplicationTests {
 
 	@Autowired
@@ -39,7 +41,7 @@ public class DemoApplicationTests {
 				.getForObject(String.format("http://localhost:%s/greet/John", port), Greeting.class)
 				.getMessage();
 
-		assertThat(greeting).isEqualTo("Hello again John!");
+		assertThat(greeting).isEqualTo("Hello test John!");
 	}
 
 	@Test
@@ -50,6 +52,6 @@ public class DemoApplicationTests {
 				.getForObject("/greet/{name}", Greeting.class, "John")
 				.getMessage();
 
-		assertThat(greeting).isEqualTo("Hello again John!");
+		assertThat(greeting).isEqualTo("Hello test John!");
 	}
 }
