@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 import io.spring.lab.marketing.special.calculate.SpecialCalculator;
 
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.reflect.FieldUtils.writeField;
 
+@Repository
 class StubSpecialRepository implements SpecialRepository {
 
     private final Map<String, Special> db = new HashMap<>();
