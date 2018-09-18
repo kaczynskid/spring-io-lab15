@@ -2,6 +2,7 @@ package io.spring.lab.warehouse.item;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,8 @@ public class ItemRepresentation {
 
 	private String name;
 
-	private int count;
+	@JsonProperty("count")
+	private int itemCount;
 
 	private BigDecimal price;
 
@@ -22,6 +24,6 @@ public class ItemRepresentation {
 	}
 
 	Item asItem() {
-		return new Item(null, name, count, price);
+		return new Item(null, name, itemCount, price);
 	}
 }
