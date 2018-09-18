@@ -23,6 +23,11 @@ class StubItemRepository implements ItemRepository {
     }
 
     @Override
+    public long count() {
+        return db.size();
+    }
+
+    @Override
     public Optional<Item> findOne(long id) {
         return Optional.ofNullable(db.get(id));
     }

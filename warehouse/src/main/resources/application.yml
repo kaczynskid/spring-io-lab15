@@ -1,7 +1,22 @@
+info:
+  year: 2018
+  company: "Vattenfall"
+
 spring:
+#  profiles:
+#    active: "h2"
   jackson:
     serialization:
       indent-output: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: "always"
 
 ---
 

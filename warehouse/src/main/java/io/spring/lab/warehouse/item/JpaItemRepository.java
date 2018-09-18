@@ -28,6 +28,11 @@ public class JpaItemRepository implements ItemRepository {
     }
 
     @Override
+    public long count() {
+        return repository.count();
+    }
+
+    @Override
     public Optional<Item> findOne(long id) {
         return repository.findById(id);
     }
