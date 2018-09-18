@@ -15,7 +15,7 @@ public class ItemRepresentation {
 	private String name;
 
 	@JsonProperty("count")
-	private int itemCount;
+	private int stock;
 
 	private BigDecimal price;
 
@@ -24,6 +24,6 @@ public class ItemRepresentation {
 	}
 
 	Item asItem() {
-		return new Item(null, name, itemCount, price);
+		return new Item(null, name, stock, price);
 	}
 }
