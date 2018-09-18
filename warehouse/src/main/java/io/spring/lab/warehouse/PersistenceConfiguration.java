@@ -18,7 +18,11 @@ public class PersistenceConfiguration {
 
     @Bean
     public static ApplicationRunner testDataInitializer(ItemRepository items) {
-        return args -> testItemsData().forEach(items::save);
+        return args -> {
+            if (items.isEmpty()) {
+                testItemsData().forEach(items::save);
+            }
+        };
     }
 
     public static List<Item> testItemsData() {

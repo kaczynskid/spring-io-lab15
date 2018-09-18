@@ -51,7 +51,7 @@ public class ItemRepositoryTest {
         Item item = items.findMostExpensive();
 
         assertThat(item.getId()).isEqualTo(1L);
-        assertThat(item.getPrice()).isEqualTo(BigDecimal.valueOf(4000, 2));
+        assertThat(item.getPrice()).isEqualTo(BigDecimal.valueOf(400000, 4));
     }
 
     @Test

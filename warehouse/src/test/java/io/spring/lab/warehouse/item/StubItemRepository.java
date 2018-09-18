@@ -18,6 +18,11 @@ class StubItemRepository implements ItemRepository {
     private final Map<Long, Item> db = new HashMap<>();
 
     @Override
+    public boolean isEmpty() {
+        return db.isEmpty();
+    }
+
+    @Override
     public Optional<Item> findOne(long id) {
         return Optional.ofNullable(db.get(id));
     }
