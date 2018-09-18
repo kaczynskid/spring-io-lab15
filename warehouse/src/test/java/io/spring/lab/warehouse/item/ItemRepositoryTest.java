@@ -1,6 +1,7 @@
 package io.spring.lab.warehouse.item;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ActiveProfiles;
@@ -34,6 +36,9 @@ public class ItemRepositoryTest {
     @Autowired
     ItemRepository items;
 
+    @Autowired
+    TestEntityManager jpa;
+
     @Test
     public void shouldFindGivenItem() {
         Optional<Item> item = items.findOne(1L);
@@ -47,5 +52,16 @@ public class ItemRepositoryTest {
 
         assertThat(item.getId()).isEqualTo(1L);
         assertThat(item.getPrice()).isEqualTo(BigDecimal.valueOf(4000, 2));
+    }
+
+    @Test
+    public void shouldFindByNamePrefix() {
+        Item item = jpa.persistAndFlush(
+                new Item(null, "Xero", 10, BigDecimal.valueOf(999.99)));
+
+        List<Item> found = items.findByNamePrefix("X");
+
+        assertThat(found).hasSize(1);
+        assertThat(found).containsExactly(item);
     }
 }
