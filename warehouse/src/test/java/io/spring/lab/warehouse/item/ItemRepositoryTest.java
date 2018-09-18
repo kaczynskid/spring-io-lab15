@@ -5,33 +5,27 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import io.spring.lab.warehouse.PersistenceConfiguration;
+import io.spring.lab.warehouse.SpringTestBase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.context.annotation.FilterType.ANNOTATION;
 import static org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest(includeFilters = {
         @ComponentScan.Filter(type = ANNOTATION, classes = Repository.class),
         @ComponentScan.Filter(type = ASSIGNABLE_TYPE, classes = PersistenceConfiguration.class)
 })
-@AutoConfigureTestDatabase
-@ActiveProfiles("test")
 //@TestPropertySource(properties = {
 //        "spring.jpa.show-sql=true"
 //})
-public class ItemRepositoryTest {
+public class ItemRepositoryTest extends SpringTestBase {
 
     @Autowired
     ItemRepository items;
