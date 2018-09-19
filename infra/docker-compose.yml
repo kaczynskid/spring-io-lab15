@@ -54,14 +54,13 @@ services:
       - "MYSQL_DATABASE=store"
 
   rabbit:
-    image: "rabbitmq:3"
-    ports:
-      - "5672:5672"
-
-  rabbit-mgmt:
     image: "rabbitmq:3-management"
     ports:
+      - "5672:5672"
       - "15672:15672"
+    environment:
+      - "RABBITMQ_DEFAULT_USER=admin"
+      - "RABBITMQ_DEFAULT_PASS=sprio"
 
   keycloak-data:
     image: "postgres:9"
