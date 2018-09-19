@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  io.spring.lab.math.MathAutoConfiguration
+  io.spring.lab.math.MathAutoConfiguration,\
+  io.spring.lab.web.client.RestTemplateUriCustomizerAutoConfiguration,\
+  io.spring.lab.web.client.request.UriCustomizerAutoConfiguration

@@ -1,21 +1,21 @@
 package io.spring.lab.math;
 
+import static java.math.RoundingMode.HALF_EVEN;
+
 import java.math.MathContext;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Data;
 
-import static java.math.RoundingMode.HALF_EVEN;
-
 @Data
 @ConfigurationProperties(prefix = "math")
 public class MathProperties {
 
-	/** Precision for math operations */
+	/** Precision for Math operations */
 	private int precision = 18;
 
-	/** Scale for math operations */
+	/** Scale for Math operations */
 	private int scale = 4;
 
 	public MathContext getContext() {
