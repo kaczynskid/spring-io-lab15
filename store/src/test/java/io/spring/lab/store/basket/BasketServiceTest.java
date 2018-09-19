@@ -5,20 +5,29 @@ import java.math.BigDecimal;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cloud.contract.stubrunner.StubFinder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 
 import io.spring.lab.store.SpringTestBase;
 import io.spring.lab.store.basket.item.BasketItem;
 import io.spring.lab.store.basket.item.BasketItemService;
 import io.spring.lab.store.special.SpecialCalculation;
 import io.spring.lab.store.special.SpecialClient;
+import io.spring.lab.web.client.request.UriCustomizer;
 
 import static io.spring.lab.store.special.SpecialCalculationRequest.requestCalculationFor;
+import static java.util.Optional.ofNullable;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
+import static org.springframework.web.util.UriComponentsBuilder.fromUri;
 
 @SpringBootTest(webEnvironment = NONE)
+@Import(BasketServiceTest.StubRunnerBaseConfig.class)
 public class BasketServiceTest extends SpringTestBase {
 
     protected static final long ITEM_ID = 1L;
@@ -30,6 +39,21 @@ public class BasketServiceTest extends SpringTestBase {
     protected static final BigDecimal ITEM_SPECIAL_PRICE = BigDecimal.valueOf(150.0);
     protected static final String SPECIAL_ID = "abcdefghijklmn0123456789";
 
+    @TestConfiguration
+    static class StubRunnerBaseConfig {
+
+        @Bean
+        @Primary
+        UriCustomizer stubRunnerUriCustomizer(StubFinder stubFinder) {
+            return uri -> ofNullable(stubFinder.findAllRunningStubs().getPort(uri.getHost()))
+                    .map(port -> fromUri(uri)
+                            .host("localhost")
+                            .port(port)
+                            .build().toUri())
+                    .orElse(uri);
+        }
+    }
+
 //    @MockBean
 //    ItemsClient items;
 
@@ -38,6 +62,7 @@ public class BasketServiceTest extends SpringTestBase {
 
     @Autowired
     BasketService baskets;
+
     @Autowired
     BasketItemService basketItems;
 
