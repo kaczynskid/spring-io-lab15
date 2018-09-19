@@ -20,20 +20,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
-@SpringBootTest(webEnvironment = NONE)
+@SpringBootTest(webEnvironment = NONE, properties = {
+        "warehouse.host-port=localhost:9100"
+})
 public class BasketServiceTest extends SpringTestBase {
 
     protected static final long ITEM_ID = 1L;
     protected static final String ITEM_NAME = "A";
-    protected static final BigDecimal ITEM_UNIT_PRICE = BigDecimal.valueOf(40.0);
+    protected static final BigDecimal ITEM_UNIT_PRICE = BigDecimal.valueOf(400000, 4);
     protected static final int ITEM_REGULAR_COUNT = 2;
     protected static final BigDecimal ITEM_REGULAR_PRICE = BigDecimal.valueOf(80.0);
     protected static final int ITEM_SPECIAL_COUNT = 5;
     protected static final BigDecimal ITEM_SPECIAL_PRICE = BigDecimal.valueOf(150.0);
     protected static final String SPECIAL_ID = "abcdefghijklmn0123456789";
 
-    @MockBean
-    ItemsClient items;
+//    @MockBean
+//    ItemsClient items;
 
     @MockBean
     SpecialClient specials;
@@ -48,8 +50,8 @@ public class BasketServiceTest extends SpringTestBase {
         // given
         Basket basket = baskets.create();
         // and
-        when(items.findOne(ITEM_ID))
-                .thenReturn(new ItemRepresentation(ITEM_NAME, ITEM_UNIT_PRICE));
+//        when(items.findOne(ITEM_ID))
+//                .thenReturn(new ItemRepresentation(ITEM_NAME, ITEM_UNIT_PRICE));
         when(specials.calculateFor(ITEM_ID, requestCalculationFor(ITEM_UNIT_PRICE, ITEM_REGULAR_COUNT)))
                 .thenReturn(new SpecialCalculation(null, ITEM_REGULAR_PRICE));
 
@@ -72,8 +74,8 @@ public class BasketServiceTest extends SpringTestBase {
         // given
         Basket basket = baskets.create();
         // and
-        when(items.findOne(ITEM_ID))
-                .thenReturn(new ItemRepresentation(ITEM_NAME, ITEM_UNIT_PRICE));
+//        when(items.findOne(ITEM_ID))
+//                .thenReturn(new ItemRepresentation(ITEM_NAME, ITEM_UNIT_PRICE));
         when(specials.calculateFor(ITEM_ID, requestCalculationFor(ITEM_UNIT_PRICE, ITEM_SPECIAL_COUNT)))
                 .thenReturn(new SpecialCalculation(SPECIAL_ID, ITEM_SPECIAL_PRICE));
 
