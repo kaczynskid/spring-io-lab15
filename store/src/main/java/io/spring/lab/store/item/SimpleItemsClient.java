@@ -2,7 +2,6 @@ package io.spring.lab.store.item;
 
 import java.util.List;
 
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -19,8 +18,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 public class SimpleItemsClient implements ItemsClient {
 
     private RestTemplate rest;
-
-    private Environment env;
 
     @Override
     public List<ItemRepresentation> findAll() {
