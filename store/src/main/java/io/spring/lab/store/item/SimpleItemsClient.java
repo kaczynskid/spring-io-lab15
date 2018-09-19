@@ -23,8 +23,7 @@ public class SimpleItemsClient implements ItemsClient {
 
     @Override
     public ItemRepresentation findOne(long id) {
-        String baseUri = env.getProperty("warehouse.host-port");
-        return rest.getForObject("http://" + baseUri + "/items/{id}", ItemRepresentation.class, id);
+        return rest.getForObject("http://warehouse/items/{id}", ItemRepresentation.class, id);
     }
 
     @Override

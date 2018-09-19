@@ -10,8 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import io.spring.lab.store.SpringTestBase;
 import io.spring.lab.store.basket.item.BasketItem;
 import io.spring.lab.store.basket.item.BasketItemService;
-import io.spring.lab.store.item.ItemRepresentation;
-import io.spring.lab.store.item.ItemsClient;
 import io.spring.lab.store.special.SpecialCalculation;
 import io.spring.lab.store.special.SpecialClient;
 
@@ -20,9 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
-@SpringBootTest(webEnvironment = NONE, properties = {
-        "warehouse.host-port=localhost:9100"
-})
+@SpringBootTest(webEnvironment = NONE)
 public class BasketServiceTest extends SpringTestBase {
 
     protected static final long ITEM_ID = 1L;

@@ -7,3 +7,6 @@ spring:
     hibernate:
       ddl-auto: "validate"
 
+warehouse:
+  host: "localhost"
+  port: 9100
