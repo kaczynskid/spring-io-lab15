@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.cloud.contract.stubrunner.StubFinder;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
@@ -28,11 +30,14 @@ import static org.springframework.web.util.UriComponentsBuilder.fromUri;
 
 @SpringBootTest(webEnvironment = NONE)
 @Import(BasketServiceTest.StubRunnerBaseConfig.class)
+@AutoConfigureStubRunner( stubsMode = StubRunnerProperties.StubsMode.LOCAL, ids = {
+        "io.spring.lab:warehouse:+"
+})
 public class BasketServiceTest extends SpringTestBase {
 
     protected static final long ITEM_ID = 1L;
     protected static final String ITEM_NAME = "A";
-    protected static final BigDecimal ITEM_UNIT_PRICE = BigDecimal.valueOf(400000, 4);
+    protected static final BigDecimal ITEM_UNIT_PRICE = BigDecimal.valueOf(40, 0);
     protected static final int ITEM_REGULAR_COUNT = 2;
     protected static final BigDecimal ITEM_REGULAR_PRICE = BigDecimal.valueOf(80.0);
     protected static final int ITEM_SPECIAL_COUNT = 5;
