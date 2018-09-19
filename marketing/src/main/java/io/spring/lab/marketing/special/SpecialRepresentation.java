@@ -20,4 +20,8 @@ public class SpecialRepresentation {
 	public static SpecialRepresentation of(Special special) {
 		return new SpecialRepresentation(special.getItemId(), special.getBatchSize(), special.getBatchPrice());
 	}
+
+	public Special asSpecial() {
+		return new Special(null, itemId, batchSize, batchPrice);
+	}
 }
