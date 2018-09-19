@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureTestDatabase
-@ActiveProfiles("test")
+@ActiveProfiles({"nometrics", "test"})
 public abstract class SpringTestBase {
 
 }

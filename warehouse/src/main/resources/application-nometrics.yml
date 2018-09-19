@@ -1,0 +1,7 @@
+management:
+  metrics:
+    export:
+      jmx:
+        enabled: false
+      graphite:
+        enabled: false
