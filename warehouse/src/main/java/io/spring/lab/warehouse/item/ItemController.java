@@ -25,7 +25,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @RestController
 @RequestMapping("/items")
 @AllArgsConstructor
-class ItemController {
+public class ItemController {
 
     private ItemService items;
 
