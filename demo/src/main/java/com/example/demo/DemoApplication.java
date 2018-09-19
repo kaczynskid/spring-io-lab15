@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.ExitCodeExceptionMapper;
@@ -74,11 +75,12 @@ class GreetingTemplateMissing extends RuntimeException implements ExitCodeGenera
 @RestController
 class GreetingController {
 
-	@Value("${greeting.template:Hi %s}")
-	String template;
+	@Autowired
+	Environment env;
 
 	@GetMapping("/greet/{name}")
 	Greeting greet(@PathVariable("name") String name) {
+		String template = env.getProperty("greeting.template", "Hi %s");
 		return new Greeting(String.format(template, name));
 	}
 }
