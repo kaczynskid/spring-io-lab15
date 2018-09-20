@@ -7,7 +7,6 @@ import org.springframework.cloud.contract.stubrunner.StubFinder;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.ContextConfiguration;
 
 import io.spring.lab.web.client.request.UriCustomizer;
@@ -34,7 +33,6 @@ public abstract class StubRunnerTestBase extends SpringTestBase {
     static class StubRunnerBaseConfig {
 
         @Bean
-        @Primary
         UriCustomizer stubRunnerUriCustomizer(StubFinder stubFinder) {
             return uri -> ofNullable(stubFinder.findAllRunningStubs().getPort(uri.getHost()))
                     .map(port -> fromUri(uri)

@@ -5,7 +5,7 @@
 
 	<groupId>io.spring.lab</groupId>
 	<artifactId>config</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.15-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Spring IO Lab Config</name>
@@ -66,8 +66,20 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+			</plugin>
+
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

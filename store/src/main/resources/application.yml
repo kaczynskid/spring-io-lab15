@@ -7,6 +7,12 @@ spring:
     hibernate:
       ddl-auto: "validate"
 
-warehouse:
-  host: "localhost"
-  port: 9100
+uri:
+  customizer:
+    rewrite:
+      warehouse:
+        host: "localhost"
+        port: 9100
+      marketing:
+        host: "localhost"
+        port: 9120
