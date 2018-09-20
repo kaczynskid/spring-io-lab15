@@ -3,6 +3,7 @@ package io.spring.lab.warehouse;
 import java.math.BigDecimal;
 
 import org.junit.Before;
+import org.springframework.mock.env.MockEnvironment;
 import org.springframework.test.web.servlet.MockMvc;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -28,7 +29,7 @@ public abstract class WarehouseContractTestBase {
         doReturn(itemA())
                 .when(items).findOne(1L);
 
-        return new ItemController(items);
+        return new ItemController(items, new MockEnvironment());
     }
 
     private Item itemA() {

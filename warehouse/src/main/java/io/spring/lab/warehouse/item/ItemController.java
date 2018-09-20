@@ -2,6 +2,7 @@ package io.spring.lab.warehouse.item;
 
 import java.util.List;
 
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,15 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @AllArgsConstructor
 public class ItemController {
 
-    private ItemService items;
+    private final ItemService items;
+
+    private final Environment env;
 
     @GetMapping
     List<ItemRepresentation> findAll() {
         return items.findAll().stream()
                 .map(ItemRepresentation::of)
+                .map(r -> r.withInstanceId(env.getRequiredProperty("info.instanceId")))
                 .collect(toList());
     }
 

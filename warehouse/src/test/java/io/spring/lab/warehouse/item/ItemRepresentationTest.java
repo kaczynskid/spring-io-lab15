@@ -22,7 +22,7 @@ public class ItemRepresentationTest {
     @Test
     public void shouldSerializeItemRepresentation() throws Exception {
         // given ItemRepresentation
-        ItemRepresentation item = new ItemRepresentation("A", 100, BigDecimal.valueOf(40.0));
+        ItemRepresentation item = new ItemRepresentation("A", 100, BigDecimal.valueOf(40.0), null);
 
         // write JSON using above JacksonTester
         JsonContent<ItemRepresentation> result = json.write(item);
