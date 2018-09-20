@@ -9,3 +9,21 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+management:
+  endpoints:
+    web:
+      base-path: "/admin"
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: "always"
+
+spring:
+  boot:
+    admin:
+      context-path: "/ui"
+      discovery:
+        converter:
+          management-context-path: "/admin"

@@ -24,7 +24,7 @@ public class WarehouseApplication {
 	}
 }
 
-@Component
+//@Component
 class RandomHealthIndicator implements HealthIndicator {
 
 	private static final Random RANDOM = new Random();
