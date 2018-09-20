@@ -15,6 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
+		"spring.cloud.config.enabled=false",
 		"greeting.template=Hello test %s!"
 })
 public class DemoApplicationTests {
