@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: "warehouse"
+  cloud:
+    config:
+      uri: "http://localhost:9000"
+      fail-fast: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:9010/eureka"
