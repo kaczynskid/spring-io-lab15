@@ -3,3 +3,16 @@ spring:
     hibernate:
       ddl-auto: "none"
     show-sql: "true"
+
+---
+
+spring:
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+
+eureka:
+  client:
+    enabled: false

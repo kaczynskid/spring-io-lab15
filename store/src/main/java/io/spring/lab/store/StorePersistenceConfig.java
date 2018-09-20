@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableJpaRepositories(considerNestedRepositories = true)
-public class JpaRepositoriesConfig {
+public class StorePersistenceConfig {
 }
