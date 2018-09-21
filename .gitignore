@@ -11,4 +11,4 @@ node_modules
 *.jar
 !maven-wrapper.jar
 *.original
-
+infra/zipkin

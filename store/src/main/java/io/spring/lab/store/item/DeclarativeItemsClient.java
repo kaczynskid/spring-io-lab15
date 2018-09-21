@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ public class DeclarativeItemsClient implements ItemsClient {
     }
 
     private FeignItemsClient items;
+    private ItemStreamsBinding binding;
 
     @Override
     public List<ItemRepresentation> findAll() {
@@ -47,6 +49,9 @@ public class DeclarativeItemsClient implements ItemsClient {
 
     @Override
     public void updateStock(ItemStockUpdate changes) {
-        items.updateStock(changes.getId(), changes);
+        //items.updateStock(changes.getId(), changes);
+        binding.checkoutItem()
+                .send(MessageBuilder.withPayload(changes).build());
+
     }
 }
