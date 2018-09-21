@@ -1,5 +1,8 @@
 package io.spring.lab.marketing.special;
 
+import static java.util.stream.Collectors.toList;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.spring.lab.marketing.special.calculate.SpecialCalculation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-import static java.util.stream.Collectors.toList;
-
+@Slf4j
 @RestController
-@RequestMapping("/specials")
 @AllArgsConstructor
+@RequestMapping("/specials")
 public class SpecialController {
 
     private final SpecialService specials;
@@ -28,14 +31,12 @@ public class SpecialController {
                 .collect(toList());
     }
 
-    @PostMapping
-    public SpecialRepresentation add(@RequestBody SpecialRepresentation request) {
-        return SpecialRepresentation.of(specials.create(request.asSpecial()));
-    }
-
-    @PostMapping("/{itemId}/calculate")
+    @PostMapping(path = "/{itemId}/calculate", produces = APPLICATION_JSON_UTF8_VALUE)
     public SpecialCalculation calculateFor(@PathVariable("itemId") long itemId,
                                            @RequestBody SpecialCalculationRequest request) {
-        return specials.calculateFor(itemId, request.getUnitPrice(), request.getUnitCount());
+        SpecialCalculation calculation = specials.calculateFor(itemId, request.getUnitPrice(), request.getUnitCount());
+        log.info("Calculated special {}", calculation);
+        return calculation;
     }
+
 }
