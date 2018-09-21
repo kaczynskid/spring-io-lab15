@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
@@ -21,6 +22,7 @@ import static org.springframework.web.util.UriComponentsBuilder.fromUri;
 
 @Slf4j
 @Configuration
+@EnableFeignClients
 public class StoreCloudConfig {
 
     @Bean
