@@ -52,6 +52,5 @@ public class DeclarativeItemsClient implements ItemsClient {
         //items.updateStock(changes.getId(), changes);
         binding.checkoutItem()
                 .send(MessageBuilder.withPayload(changes).build());
-
     }
 }

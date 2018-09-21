@@ -2,7 +2,7 @@ package io.spring.lab.warehouse
 
 import io.spring.lab.warehouse.item.ItemRepository
 
-import static io.spring.lab.warehouse.PersistenceConfiguration.testDataInitializer
+import static io.spring.lab.warehouse.WarehousePersistenceConfig.testDataInitializer
 
 class TestDataConfiguration {
 

@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import io.spring.lab.warehouse.error.DefaultErrorController;
 
-import static io.spring.lab.warehouse.PersistenceConfiguration.testItemsData;
+import static io.spring.lab.warehouse.WarehousePersistenceConfig.testItemsData;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;

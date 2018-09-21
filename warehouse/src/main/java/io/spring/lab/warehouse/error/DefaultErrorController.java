@@ -1,5 +1,6 @@
 package io.spring.lab.warehouse.error;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -14,6 +15,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @Slf4j
 @RestController
+@ConditionalOnWebApplication
 public class DefaultErrorController implements ErrorController {
 
 	private final ErrorProperties errorProperties;

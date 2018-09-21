@@ -14,7 +14,7 @@ import io.spring.lab.warehouse.item.ItemRepository;
 
 @Configuration
 @EnableJpaRepositories(considerNestedRepositories = true)
-public class PersistenceConfiguration {
+public class WarehousePersistenceConfig {
 
     @Bean
     public static ApplicationRunner testDataInitializer(ItemRepository items) {

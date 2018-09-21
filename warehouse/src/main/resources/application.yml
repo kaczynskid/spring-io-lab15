@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        stockUpdate:
+          destination: "item-stock-update"
+          group: "warehouse"
+          durableSubscribtion: true
+          content-type: "application/json"

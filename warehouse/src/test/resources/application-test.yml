@@ -20,8 +20,15 @@ spring:
       enabled: false
       discovery:
         enabled: true
+  zipkin:
+    enabled: false
+  sleuth:
+    enabled: false
 
 eureka:
   client:
     enabled: false
 
+feign:
+  hystrix:
+    enabled: false

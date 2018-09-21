@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
-import io.spring.lab.warehouse.PersistenceConfiguration;
+import io.spring.lab.warehouse.WarehousePersistenceConfig;
 import io.spring.lab.warehouse.SpringTestBase;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +20,7 @@ import static org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE;
 
 @DataJpaTest(includeFilters = {
         @ComponentScan.Filter(type = ANNOTATION, classes = Repository.class),
-        @ComponentScan.Filter(type = ASSIGNABLE_TYPE, classes = PersistenceConfiguration.class)
+        @ComponentScan.Filter(type = ASSIGNABLE_TYPE, classes = WarehousePersistenceConfig.class)
 })
 //@TestPropertySource(properties = {
 //        "spring.jpa.show-sql=true"
